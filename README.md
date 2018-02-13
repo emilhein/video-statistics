@@ -15,3 +15,4 @@ Project for show statistics of video streaming
 5. Use method in the root server.js file to periodically simulate incoming datapoints (This will change the graphs every time you update the page)
     - dataFeeder.createRecordEveryXSecound(1);
 
+![Example](showcase/example.PNG?raw=true "Example")
