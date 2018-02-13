@@ -20,16 +20,18 @@ let models = require('./server/models')
 let app = express();
 
 
+
+
 let hbs = exphbs.create({
   defaultLayout: 'main',
   helpers: {
-    ifeq: function(a, b, options) {
+    ifeq: function (a, b, options) {
       if (a === b) {
         return options.fn(this);
       }
       return options.inverse(this);
     },
-    toJSON : function(object) {
+    toJSON: function (object) {
       return JSON.stringify(object);
     }
   }
@@ -41,10 +43,16 @@ app.set('port', process.env.PORT || 3000);
 app.use(compression());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(expressValidator());
 app.use(methodOverride('_method'));
-app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -62,11 +70,19 @@ if (app.get('env') === 'production') {
 
 
 app.listen(app.get('port'), () => {
-  // dataFeeder.createRecordEveryXSecound(5);
   console.log('Express server listening on port ' + app.get('port'));
 
+  //Use this to simulate ingoing datapoints 
+  // dataFeeder.createRecordEveryXSecound(1);
+
+
+
   models.sequelize.sync()
-  .then(() => console.log('db synced',))
+
+  // WHEN RUNNING FIRST TIME
+  // .then(() => dataFeeder.feedData())
+
+  .then(res => console.log('synced and fed'))
   .catch(err => console.log('something went wrong', err))
 });
 

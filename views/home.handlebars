@@ -17,21 +17,51 @@
     <div>{{msg}}</div>
     {{/each}}
   </div>
-  {{/if}}
+  {{/if}} {{#each data}}
+
   <div class="row">
-    {{#each data}}
-    <div class="col-sm-4">
+    <div class="col-xl-4">
       <div class="panel">
         <div class="panel-body">
           <h3>Video_id: {{this.id}}</h3>
           <p>Total Views: {{this.count}}</p>
-          <a href="#" role="button" class="btn btn-default">View details</a>
+          <div id="myChart{{this.id}}"></div>
+
+          {{!--
+          <a href="#" role="button" class="btn btn-default">View details</a> --}}
         </div>
       </div>
     </div>
-    {{/each}}
-
   </div>
+  {{/each}}
+
 
 </div>
 </div>
+
+<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+
+
+<script>
+  var colors = {
+    gray: "#EBEBEB",
+    grayDark: "#3F3F3F"
+  };
+  const renderChart = (id, array) => {
+    return zingchart.render({
+      id: 'myChart' + id,
+      data: {
+        type: 'area',
+        series: [{
+          values: array,
+          lineColor : "#80DEEA",
+          lineWidth : "2px",
+          backgroundColor : "#80DEEA",
+        }]
+      }
+    });
+  }
+  {{#each watchData}}
+    renderChart({{this.video_id}}, [{{this.watchArray}}])
+  {{/each}}
+</script>

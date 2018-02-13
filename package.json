@@ -1,5 +1,5 @@
 {
-  "name": "icy-mode",
+  "name": "my-test-app",
   "version": "1.0.0",
   "description": "My app description",
   "scripts": {
@@ -16,10 +16,8 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.2.1",
     "express-validator": "^2.20.4",
-    "knex": "^0.10.0",
     "method-override": "^2.3.5",
     "morgan": "^1.7.0",
-    "nodemailer": "^2.3.0",
     "pg": "7.4.1",
     "faker" : "4.1.0",
     "lodash" : "4.17.5",

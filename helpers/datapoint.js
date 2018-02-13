@@ -7,7 +7,7 @@ const getBrowsers = number => browsers[number]
 const getVideos = number => videos[number]
 
 const getRandomArbitrary = max => Math.floor(Math.random() * max);
-const getRandomTime = () => (Math.random() * 100).toFixed(3)
+const getRandomTime = () => (Math.random() * 360).toFixed(3)
 
 
 const getRandomBrowser = _.flowRight(getBrowsers, getRandomArbitrary);
